@@ -1,0 +1,99 @@
+﻿<Window x:Class="Hotels_Manager.Views.Dialogs.CreateNewFloorDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotels_Manager.Views.Dialogs"
+        xmlns:controls="clr-namespace:Hotels_Manager.Views.Controls"
+        xmlns:vm="clr-namespace:Hotels_Manager.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+        mc:Ignorable="d" 
+        Title="Dialog" 
+        Height="400" 
+        MaxHeight="400" 
+        MinHeight="350"
+        Width="500"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        AllowsTransparency="True"
+        Background="Transparent">
+
+
+    <Border
+        ClipToBounds="True"
+        CornerRadius="10"
+        BorderThickness="1"
+        Background="{DynamicResource DialogBackColor}">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.7*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Border CornerRadius="10,0,0,10">
+                <Border.Background>
+                    <ImageBrush ImageSource="../Assets/floor_img.png"/>
+                </Border.Background>
+            </Border>
+
+            <Grid
+                Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="90"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock
+                    Style="{DynamicResource HeaderTextBlockStyle}"
+                    FontSize="18"
+                    Text="Add new floor:"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,0"/>
+
+                <StackPanel
+                    Grid.Row="1"
+                    Orientation="Vertical"
+                    Margin="30,0,20,0">
+
+                    <TextBlock
+                        Style="{DynamicResource SubHeaderTextBlockStyle}"
+                        Margin="0,20,0,0"
+                        Text="Number of the floor:"/>
+
+                    <controls:ModernTextBox
+                        Text="{Binding NewFloorNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        PlaceHolder="Fill in the number of the floor field..."
+                        Background="{DynamicResource DialogBackColor}"/>
+                </StackPanel>
+
+                <StackPanel
+                    Grid.Row="2">
+
+                    <controls:ModernButton
+                        x:Name="ConfirmBtn"
+                        Grid.Row="2"
+                        Margin="20,0,10,0"
+                        Content="Add"
+                        Click="ConfirmBtn_Click"
+                        Command="{Binding AddNewFloorCommand}"/>
+
+                    <controls:ModernButton
+                        x:Name="CancelBtn"
+                        Grid.Row="2"
+                        BorderThickness="2"
+                        BorderBrush="{DynamicResource MainStyleColor}"
+                        Background="{DynamicResource DialogBackColor}"
+                        MouseOverColor="#36383d"
+                        Margin="20,15,10,0"
+                        Content="Cancel"
+                        Click="CancelBtn_Click"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

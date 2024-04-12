@@ -1,0 +1,100 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|d:\\visual studio 2022 community\\repos\\hotels_manager_experimental\\hotels_manager\\views\\resources\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|solutionrelative:hotels_manager\\views\\resources\\colors.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|d:\\visual studio 2022 community\\repos\\hotels_manager_experimental\\hotels_manager\\views\\resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|solutionrelative:hotels_manager\\views\\resources\\styles.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|d:\\visual studio 2022 community\\repos\\hotels_manager_experimental\\hotels_manager\\views\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|solutionrelative:hotels_manager\\views\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|d:\\visual studio 2022 community\\repos\\hotels_manager_experimental\\hotels_manager\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|solutionrelative:hotels_manager\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\hotels_manager\\views\\pages\\roompage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9190588B-7191-4723-8989-C3F2ADEAB550}|Hotels_Manager\\Hotels_Manager.csproj|solutionrelative:hotels_manager\\views\\pages\\roompage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\Views\\Pages\\MainPage.xaml",
+              "RelativeDocumentMoniker": "Hotels_Manager\\Views\\Pages\\MainPage.xaml",
+              "ToolTip": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\Views\\Pages\\MainPage.xaml",
+              "RelativeToolTip": "Hotels_Manager\\Views\\Pages\\MainPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-11T21:33:45.201Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Colors.xaml",
+              "DocumentMoniker": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\Views\\Resources\\Colors.xaml",
+              "RelativeDocumentMoniker": "Hotels_Manager\\Views\\Resources\\Colors.xaml",
+              "ToolTip": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\Views\\Resources\\Colors.xaml",
+              "RelativeToolTip": "Hotels_Manager\\Views\\Resources\\Colors.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-11T21:11:17.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Styles.xaml",
+              "DocumentMoniker": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\Views\\Resources\\Styles.xaml",
+              "RelativeDocumentMoniker": "Hotels_Manager\\Views\\Resources\\Styles.xaml",
+              "ToolTip": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\Views\\Resources\\Styles.xaml",
+              "RelativeToolTip": "Hotels_Manager\\Views\\Resources\\Styles.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-11T21:11:12.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoomPage.xaml",
+              "DocumentMoniker": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\Views\\Pages\\RoomPage.xaml",
+              "RelativeDocumentMoniker": "Hotels_Manager\\Views\\Pages\\RoomPage.xaml",
+              "ToolTip": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\Views\\Pages\\RoomPage.xaml",
+              "RelativeToolTip": "Hotels_Manager\\Views\\Pages\\RoomPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-11T20:59:16.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "Hotels_Manager\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "D:\\Visual Studio 2022 Community\\repos\\Hotels_Manager_Experimental\\Hotels_Manager\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "Hotels_Manager\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAYwBgBAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-11T20:24:21.941Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

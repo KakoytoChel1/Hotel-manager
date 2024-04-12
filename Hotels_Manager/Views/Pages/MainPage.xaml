@@ -1,0 +1,58 @@
+﻿<Page x:Class="Hotels_Manager.Views.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hotels_Manager.Views.Pages"
+      xmlns:controls="clr-namespace:Hotels_Manager.Views.Controls"
+      xmlns:converters="clr-namespace:Hotels_Manager.Views.Converters"
+      xmlns:vm="clr-namespace:Hotels_Manager.ViewModels"
+      d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="850"
+      Title="MainPage">
+
+    <Page.Resources>
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontWeight="SemiBold"
+            FontSize="18"
+            Foreground="{DynamicResource SubTextColor}"
+            Text="There is no hotel, add one!"
+            Visibility="{Binding ElementName=HotelsListBox, Path=Items.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+
+        <ListBox
+            x:Name="HotelsListBox"
+            ItemsSource="{Binding Hotels, UpdateSourceTrigger=PropertyChanged}"
+            Background="Transparent"
+            BorderThickness="0"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            Style="{DynamicResource TileListBoxStyle}">
+
+            <ListBox.ItemContainerStyle>
+                <Style BasedOn="{StaticResource HotelListBoxItemStyle}" TargetType="ListBoxItem" />
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <controls:ModernButton 
+            Grid.Column="0"
+            Height="40"
+            Width="40"
+            CornerRadius="10"
+            MouseOverColor="{DynamicResource MainStyleHoveredColor}"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Margin="0,0,20,20"
+            Command="{Binding ShowAddHotelDialogCommand}">
+
+            <Image
+                Source="../Assets/addSomething.png"
+                Width="20"/>
+        </controls:ModernButton>
+    </Grid>
+</Page>

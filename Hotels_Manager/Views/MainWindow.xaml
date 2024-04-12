@@ -1,0 +1,462 @@
+﻿<Window x:Class="Hotels_Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotels_Manager"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:behaviors="clr-namespace:Hotels_Manager.ViewModels.Behaviors"
+        xmlns:tb="http://www.hardcodet.net/taskbar"
+        xmlns:vm="clr-namespace:Hotels_Manager.ViewModels"
+        xmlns:controls="clr-namespace:Hotels_Manager.Views.Controls"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+        mc:Ignorable="d"
+        x:Name="mainWindow"
+        Title="Hotels manager"
+        Height="600" 
+        Width="850"
+        MinHeight="600"
+        MinWidth="600"
+        WindowStartupLocation="CenterScreen"
+        Icon="Assets/Star.ico"
+        Closing="mainWindow_Closing">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="30"
+            ResizeBorderThickness="5"/>
+    </WindowChrome.WindowChrome>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger 
+            EventName="StateChanged" 
+            SourceObject="{Binding ElementName=mainWindow}">
+            <i:InvokeCommandAction Command="{Binding WindowStateChangedCommand}"/>
+        </i:EventTrigger>
+
+        <i:EventTrigger 
+            EventName="TrayLeftMouseDown" 
+            SourceObject="{Binding ElementName=trayElement}">
+            <i:InvokeCommandAction Command="{Binding ShowMainWindowByTrayCommand}"/>
+        </i:EventTrigger>
+
+        <i:EventTrigger 
+            EventName="Click" 
+            SourceObject="{Binding ElementName=closeAppByTray}">
+            <i:InvokeCommandAction Command="{Binding CloseMainWindowCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Border
+        x:Name="MainWindowBorder"
+        BorderThickness="{Binding MainBorderThickness}"
+        Background="{DynamicResource BackColor}">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Tray icon-->
+            <tb:TaskbarIcon
+                x:Name="trayElement"
+                IconSource="Assets/Star.ico">
+                
+                <tb:TaskbarIcon.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem
+                            x:Name="closeAppByTray"
+                            Header="Close"/>
+                    </ContextMenu>
+                </tb:TaskbarIcon.ContextMenu>
+            </tb:TaskbarIcon>
+
+            <!--Titlebar-->
+            <Border
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Height="30"
+                Background="{DynamicResource TitlebarColor}">
+
+                <Grid>
+                    <!--Left corner buttons-->
+                    <StackPanel
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Orientation="Horizontal">
+
+                        <Button
+                            x:Name="openMenuBtn"
+                            Visibility="{Binding MenuButtonVisibility}"
+                            Style="{DynamicResource MenuButtonStyle}"
+                            WindowChrome.IsHitTestVisibleInChrome="True" 
+                            ToolTip="Menu">
+
+                            <!--Animation-->
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ThicknessAnimationUsingKeyFrames  Storyboard.TargetName="menuPanel" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                                    <EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="0,0,0,0"/>
+                                                </ThicknessAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </StackPanel>
+
+                    <!--Caption buttons-->
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+
+                        <!--Minimize button-->
+                        <Button
+                            x:Name="minimizeBtn"
+                            Style="{DynamicResource MinimizeButtonStyle}"
+                            WindowChrome.IsHitTestVisibleInChrome="True" 
+                            ToolTip="Minimize"
+                            Command="{Binding MinimizeMainWindowCommand}"/>
+
+                        <!--Restore button-->
+                        <Button
+                            x:Name="restoreBtn"
+                            Style="{DynamicResource RestoreButtonStyle}"
+                            Visibility="{Binding RestoreButtonVisibility}"
+                            WindowChrome.IsHitTestVisibleInChrome="True" 
+                            ToolTip="Restore"
+                            Command="{Binding RestoreMainWindowCommand}"/>
+
+                        <!--Maximize button-->
+                        <Button
+                            x:Name="maximizeButton"
+                            Style="{DynamicResource MaximizeButtonStyle}"
+                            Visibility="{Binding MaximizeButtonVisibility}"
+                            WindowChrome.IsHitTestVisibleInChrome="True" 
+                            ToolTip="Maximize"
+                            Command="{Binding MaximizeMainWindowCommand}"/>
+
+                        <!--Close button-->
+                        <Button
+                            x:Name="closeButton"
+                            Style="{DynamicResource CloseButtonStyle}"
+                            WindowChrome.IsHitTestVisibleInChrome="True" 
+                            ToolTip="Close"
+                            Command="{Binding HideMainWindowCommand}"/>
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!--Content-->
+            <Frame
+                NavigationUIVisibility="Hidden"
+                Grid.Row="1"
+                Content="{Binding CurrentPage}">
+            </Frame>
+
+            <Border
+                x:Name="menuPanel"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="-250,0,0,0"
+                Width="250"
+                HorizontalAlignment="Left"
+                Background="{DynamicResource MenuPanelColor}">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!--Header-->
+                        <RowDefinition Height="30"/>
+                        <!--Buttons for switching to other lists-->
+                        <RowDefinition Height="auto"/>
+                        <!--Room types editor-->
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <!--Hide menu-->
+                    <controls:ModernButton
+                        Grid.Row="0"
+                        Width="30"
+                        HorizontalAlignment="Right"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="10"
+                        Background="{Binding ElementName=menuPanel, Path=Background}"
+                        MouseOverColor="{DynamicResource MainStyleColor}"
+                        Content="&#xE106;"
+                        WindowChrome.IsHitTestVisibleInChrome="True">
+
+                        <Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.Click">
+                                <EventTrigger.Actions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ThicknessAnimationUsingKeyFrames Storyboard.TargetName="menuPanel" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                                <EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="-250,0,0,0"/>
+                                            </ThicknessAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger.Actions>
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </controls:ModernButton>
+
+                    <!--Buttons for switching to other lists-->
+                    <StackPanel
+                        Margin="0,10,0,10"
+                        Grid.Row="1"
+                        Orientation="Vertical">
+
+                        <!--Open home page-->
+                        <controls:ModernButton
+                            Height="40"
+                            FontWeight="SemiBold"
+                            MouseOverColor="{DynamicResource MainStyleColor}"
+                            Background="{Binding ElementName=menuPanel, Path=Background}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Command="{Binding SelectMainPageCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image
+                                    Height="22"
+                                    Source="Assets/mainPageImg.png"/>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Foreground="{DynamicResource TextColor}"
+                                    Text="Main page"/>
+                            </Grid>
+
+                            <!--Animation-->
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ThicknessAnimationUsingKeyFrames  Storyboard.TargetName="menuPanel" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                                    <EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="-250,0,0,0"/>
+                                                </ThicknessAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </controls:ModernButton>
+
+                        <!--Open reservations page-->
+                        <controls:ModernButton
+                            Height="40"
+                            FontWeight="SemiBold"
+                            Margin="0,10,0,0"
+                            MouseOverColor="{DynamicResource MainStyleColor}"
+                            Background="{Binding ElementName=menuPanel, Path=Background}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Command="{Binding SelectReservationListPageCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image
+                                    Height="25"
+                                    Source="Assets/reservationImg.png"/>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Foreground="{DynamicResource TextColor}"
+                                    Text="Reservations"/>
+                            </Grid>
+
+                            <!--Animation-->
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ThicknessAnimationUsingKeyFrames  Storyboard.TargetName="menuPanel" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                                    <EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="-250,0,0,0"/>
+                                                </ThicknessAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </controls:ModernButton>
+
+                        <!--Open guests page (all guests)-->
+                        <!--<controls:ModernButton
+                            Height="40"
+                            FontWeight="SemiBold"
+                            Margin="0,10,0,0"
+                            MouseOverColor="{DynamicResource MainStyleColor}"
+                            Background="{Binding ElementName=menuPanel, Path=Background}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Command="{Binding SelectGuestListPageCommand}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.3*"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Image
+                                    Height="27"
+                                    Source="Assets/guestsImg.png"/>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Left"
+                                    Foreground="{DynamicResource TextColor}"
+                                    Text="All guests"/>
+                            </Grid>
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <EventTrigger.Actions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ThicknessAnimationUsingKeyFrames  Storyboard.TargetName="menuPanel" Storyboard.TargetProperty="(FrameworkElement.Margin)">
+                                                    <EasingThicknessKeyFrame KeyTime="0:0:0.1" Value="-250,0,0,0"/>
+                                                </ThicknessAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger.Actions>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </controls:ModernButton>-->
+                    </StackPanel>
+
+                    <!--Panel for adding new room type-->
+                    <Border
+                        Grid.Row="2">
+                        <Grid
+                            Margin="0,10,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            
+                            <ListBox
+                                ItemsSource="{Binding RoomTypes, UpdateSourceTrigger=PropertyChanged}"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                                <ListBox.ItemContainerStyle>
+                                    <Style BasedOn="{StaticResource RoomTypeListBoxItemStyle}" TargetType="ListBoxItem" />
+                                </ListBox.ItemContainerStyle>
+                            </ListBox>
+
+                            <controls:ModernButton
+                                Margin="5,0,5,0"
+                                Grid.Row="1"
+                                Content="Add new room type"
+                                Command="{Binding ShowAddRoomTypeDialogCommand}"/>
+                        </Grid>
+                    </Border>
+
+                    <Border
+                        x:Name="editRoomTypePanel"
+                        Visibility="{Binding RoomTypeEditingPanelVisibility, UpdateSourceTrigger=PropertyChanged}"
+                        HorizontalAlignment="Left"
+                        Width="250"
+                        Background="{DynamicResource MenuPanelColor}"
+                        Grid.Row="2">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="100"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel
+                                DataContext="{Binding SelectedRoomTypeItem}"
+                                Grid.Row="0"
+                                Orientation="Vertical"
+                                Margin="10,0,10,0">
+
+                                <TextBlock
+                                    Style="{DynamicResource SubHeaderTextBlockStyle}"
+                                    Margin="0,20,0,0"
+                                    Text="Type name:"/>
+
+                                <controls:ModernTextBox
+                                    Text="{Binding TypeName, UpdateSourceTrigger=PropertyChanged}"
+                                    PlaceHolder="Fill in the name field..."
+                                    Background="{DynamicResource MenuPanelColor}"/>
+
+                                <TextBlock
+                                    Style="{DynamicResource SubHeaderTextBlockStyle}"
+                                    Margin="0,20,0,0"
+                                    Text="Maximum number of guests:"/>
+
+                                <controls:ModernTextBox
+                                    Text="{Binding Capacity, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    PlaceHolder="Fill in the quantity field..."
+                                    Background="{DynamicResource MenuPanelColor}">
+
+                                    <i:Interaction.Behaviors>
+                                        <behaviors:OnlyDigitBehavior/>
+                                    </i:Interaction.Behaviors>
+                                </controls:ModernTextBox>
+
+                                <TextBlock
+                                    Style="{DynamicResource SubHeaderTextBlockStyle}"
+                                    Margin="0,20,0,0"
+                                    Text="Price per day:"/>
+
+                                <controls:ModernTextBox
+                                    Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    PlaceHolder="Fill in the price field..."
+                                    Background="{DynamicResource MenuPanelColor}">
+
+                                    <i:Interaction.Behaviors>
+                                        <behaviors:OnlyDigitBehavior/>
+                                    </i:Interaction.Behaviors>
+                                </controls:ModernTextBox>
+                            </StackPanel>
+
+                            <StackPanel
+                                Grid.Row="1"
+                                Margin="10,0,10,0"
+                                VerticalAlignment="Center">
+
+                                <controls:ModernButton
+                                    Content="Save"
+                                    Command="{Binding SaveNewRoomTypeDataCommand}">
+                                </controls:ModernButton>
+
+                                <controls:ModernButton
+                                    Margin="0,15,0,0"
+                                    BorderThickness="2"
+                                    BorderBrush="{DynamicResource MainStyleColor}"
+                                    Background="{DynamicResource SubMenuPanelColor}"
+                                    MouseOverColor="#27292d"
+                                    Content="Cancel"
+                                    Command="{Binding CancelRoomTypeUpdatingCommand}">
+                                </controls:ModernButton>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

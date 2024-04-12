@@ -1,0 +1,41 @@
+﻿<Page x:Class="Hotels_Manager.Views.Pages.ReservationsListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hotels_Manager.Views.Pages"
+      xmlns:controls="clr-namespace:Hotels_Manager.Views.Controls"
+      xmlns:converters="clr-namespace:Hotels_Manager.Views.Converters"
+      xmlns:vm="clr-namespace:Hotels_Manager.ViewModels"
+      d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="850"
+      Title="ReservationsListPage">
+
+    <Page.Resources>
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontWeight="SemiBold"
+            FontSize="18"
+            Foreground="{DynamicResource SubTextColor}"
+            Text="There is no information about reservations."
+            Visibility="{Binding ElementName=ReservationsListBox, Path=Items.Count, Converter={StaticResource CountToVisibilityConverter}}"/>
+        
+        <ListBox
+            x:Name="ReservationsListBox"
+            ItemsSource="{Binding Reservations, UpdateSourceTrigger=PropertyChanged}"
+            Background="Transparent"
+            Margin="0,5,0,0"
+            BorderThickness="0">
+
+            <ListBox.ItemContainerStyle>
+                <Style BasedOn="{StaticResource ReservationListBoxItem}" TargetType="ListBoxItem"/>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+    </Grid>
+</Page>

@@ -1,0 +1,94 @@
+﻿<Window x:Class="Hotels_Manager.Views.Dialogs.ConfirmDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hotels_Manager.Views.Dialogs"
+        xmlns:controls="clr-namespace:Hotels_Manager.Views.Controls"
+        xmlns:vm="clr-namespace:Hotels_Manager.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
+        mc:Ignorable="d" 
+        Title="Dialog" 
+        Height="auto" 
+        MinHeight="150"
+        Width="400"
+        MaxWidth="400"
+        MinWidth="400"
+        ShowInTaskbar="False"
+        WindowStyle="None"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterOwner"
+        AllowsTransparency="True"
+        Background="Transparent">
+    
+    <Grid>
+        <Border
+            CornerRadius="10"
+            BorderThickness="1"
+            Background="{DynamicResource DialogBackColor}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="0.4*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel
+                    Grid.Row="0"
+                    Orientation="Horizontal">
+
+                    <Image
+                        VerticalAlignment="Center"
+                        Margin="20,0,0,0"
+                        Width="45"
+                        Source="../Assets/Dialog_Warning.png">
+                    </Image>
+
+                    <TextBlock
+                        Style="{DynamicResource SubHeaderTextBlockStyle}"
+                        TextWrapping="Wrap"
+                        VerticalAlignment="Center"
+                        Margin="25,30,0,30"
+                        Width="270"
+                        FontSize="12"
+                        Text="{Binding Description, RelativeSource={RelativeSource AncestorType=local:ConfirmDialog}}"/>
+                </StackPanel>
+
+                <!--Bottom side-->
+                <Border
+                    Grid.Row="1"
+                    Background="{DynamicResource SidePanelColor}"
+                    CornerRadius="0,0,10,10">
+
+                    <StackPanel
+                        Margin="0,0,20,0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+
+                        <controls:ModernButton
+                            x:Name="cancel"
+                            Click="cancel_Click"
+                            Width="80"
+                            Height="27"
+                            Content="Cancel"
+                            MouseOverTextColor="{DynamicResource MainStyleColor}"
+                            Foreground="{DynamicResource TextColor}"
+                            Margin="0,5,15,5"
+                            Background="{DynamicResource BtnColorNum1}"
+                            MouseOverColor="{DynamicResource BtnHoveredColorNum1}">
+                        </controls:ModernButton>
+
+                        <controls:ModernButton
+                            x:Name="Ok"
+                            Click="Ok_Click"
+                            Width="80"
+                            Height="27"
+                            Content="Okay"
+                            Foreground="#ffffff"
+                            Margin="0,5,0,5">
+                        </controls:ModernButton>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

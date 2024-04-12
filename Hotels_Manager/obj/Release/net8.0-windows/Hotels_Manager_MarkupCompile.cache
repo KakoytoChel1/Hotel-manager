@@ -1,0 +1,20 @@
+﻿Hotels_Manager
+
+
+winexe
+C#
+.cs
+D:\Visual Studio 2022 Community\repos\Hotels_Manager_\Hotels_Manager\obj\Release\net8.0-windows\
+Hotels_Manager
+none
+false
+TRACE;RELEASE;NET;NET8_0;NETCOREAPP
+D:\Visual Studio 2022 Community\repos\Hotels_Manager_\Hotels_Manager\App.xaml
+1752407616
+
+36-671311909
+2361883121899
+Views\Dialogs\ConfirmDialog.xaml;Views\Dialogs\CreateNewFloorDialog.xaml;Views\Dialogs\CreateNewGuestDialog.xaml;Views\Dialogs\CreateNewHotelDialog.xaml;Views\Dialogs\CreateNewRoomDialog.xaml;Views\Dialogs\CreateNewRoomTypeDialog.xaml;Views\Dialogs\MessageDialog.xaml;Views\MainWindow.xaml;Views\Pages\FloorPage.xaml;Views\Pages\GuestListPage.xaml;Views\Pages\GuestPage.xaml;Views\Pages\HotelPage.xaml;Views\Pages\MainPage.xaml;Views\Pages\ReservationListPage.xaml;Views\Pages\RoomPage.xaml;Views\Resources\Colors.xaml;Views\Resources\Styles.xaml;
+
+False
+
