@@ -5,7 +5,7 @@
 - [Русский](./README_RU.md)
 - [English](./README.md)
 
-**"Hotels manager"** is a project application designed to digitise information about hotels that already exist or will exist. The main functionality includes:
+**"Hotels manager"** is a project application designed using **WPF .NET Core** to digitise information about hotels that already exist or will exist. The main functionality includes:
 - Formation of hierarchy: **Hotel - Floor - Room (has type) - Guest (has reservation)**.
 - Interface to interact with instances: add, delete, edit, display.
 - Storing data in a database with **SQLite provider**.
